@@ -7,15 +7,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-
+@RequestMapping("/calculator")
 public class CalculatorController {
 
-    @GetMapping("/calculator")
+    @GetMapping("")
     public String getHome() {
         return "/calculator";
     }
 
-    @PostMapping("/calculator")
+    @PostMapping("/save")
     public String calculate(Model model,double number1, double number2, String calculate){
         double result = 0;
         String msg = null;
@@ -37,8 +37,8 @@ public class CalculatorController {
                 result = number1 / number2;
                 break;
         }
-        model.addAttribute("result",result);
-        model.addAttribute("errorMsg", msg);
+        model.addAttribute("result","Result: " + result);
+        model.addAttribute("errorMsg","Error: " + msg);
         model.addAttribute("number2",number2);
      return "/calculator";
     }

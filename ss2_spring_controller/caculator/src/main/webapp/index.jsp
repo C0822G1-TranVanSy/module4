@@ -12,6 +12,6 @@
     <title>Title</title>
 </head>
 <body>
-<c:redirect url="/calculator"></c:redirect>
+<c:redirect url="/calculator/" ></c:redirect>
 </body>
 </html>

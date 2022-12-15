@@ -28,5 +28,12 @@
   </label>
     <button type="submit">Save</button>
   </form>
+  <h1>Danh sách gia vị đã chọn</h1>
+  <table>
+    <c:forEach var="c" items="${condiments}">
+    <tr>
+      <td>${c}</td>
+    </tr>
+    </c:forEach>
   </body>
 </html>

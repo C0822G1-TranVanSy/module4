@@ -19,7 +19,7 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 <h1 class="text-center">Calculator</h1>
-<form action="/calculator" method="post">
+<form action="/calculator/save" method="post">
     <div class="row d-flex justify-content-center">
         <label for="number1"></label>
         <div class="col-md-3 m-2">
@@ -49,10 +49,10 @@
 </form>
 
 <c:if test="${number2==0}">
-    <marquee style="color: red">Error: ${errorMsg}</marquee>
+    <marquee style="color: red">${errorMsg}</marquee>
 </c:if>
 <c:if test="${number2!=0}">
-    <marquee style="color: green">Result: ${result}</marquee>
+    <marquee style="color: green">${result}</marquee>
 </c:if>
 </body>
 </html>
