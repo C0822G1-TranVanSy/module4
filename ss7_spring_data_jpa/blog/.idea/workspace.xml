@@ -1,9 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8fa6546-b011-4393-9bd0-b986f806560a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../../ss5_orm/product_management/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ss5_orm/product_management/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ss5_orm/product_management/.idea/modules/product_management.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../ss5_orm/product_management/.idea/modules/product_management.main.iml" afterDir="false" />
+    <list default="true" id="bee2d7d9-a948-4df0-88eb-e6a5c80a5751" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/blog/controller/BlogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/blog/model/Blog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/blog/repository/IBlogRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/blog/service/IBlogService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/blog/service/impl/BlogService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/views/create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/views/edit.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/views/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/views/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/views/view.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../giai_thuat/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../giai_thuat/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../giai_thuat/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../giai_thuat/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../giai_thuat/src/Demo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss5_orm/product_management/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ss5_orm/product_management/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../ss5_orm/product_management/.idea/modules/product_management.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../ss5_orm/product_management/.idea/modules/product_management.main.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,48 +33,83 @@
       <ProjectState />
     </projectState>
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="HTML File" />
+      </list>
+    </option>
   </component>
-  <component name="ProjectId" id="2JCtAWX4k5LFVhztaCzbxd3tCDZ" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="2JD1i5ERiTTcofS2UvlTsAIRQPM" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
-    <option name="autoscrollToSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
-    <option name="showMembers" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
-  <component name="SvnConfiguration">
-    <configuration />
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\codegym\C0822G1_TranVanSy\module4\blog\src\main\resources\templates\views" />
+    </key>
   </component>
+  <component name="RunManager">
+    <configuration name="BlogApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="blog.main" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.codegym.blog.BlogApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c8fa6546-b011-4393-9bd0-b986f806560a" name="Default Changelist" comment="" />
-      <created>1671593749922</created>
+      <changelist id="bee2d7d9-a948-4df0-88eb-e6a5c80a5751" name="Changes" comment="" />
+      <created>1671597965041</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1671593749922</updated>
-      <workItem from="1671593755605" duration="680000" />
+      <updated>1671597965041</updated>
+      <workItem from="1671597966722" duration="14839000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
-  <component name="WindowStateProjectService">
-    <state x="462" y="119" key="FileChooserDialogImpl" timestamp="1671594334581">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="462" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1671594334581" />
-    <state x="65" y="25" key="new project wizard" timestamp="1671594441698">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="65" y="25" key="new project wizard/0.0.1366.728@0.0.1366.728" timestamp="1671594441698" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
