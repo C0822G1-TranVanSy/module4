@@ -1,9 +1,13 @@
 package com.codegym.blog.controller;
 
 import com.codegym.blog.model.Blog;
+import com.codegym.blog.model.Category;
 import com.codegym.blog.service.IBlogService;
 import com.codegym.blog.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,9 +23,17 @@ public class BlogController {
     @Autowired
     private ICategoryService categoryService;
 
+//    @GetMapping("")
+//    public String showList(Model model){
+//        List<Blog> blogList = blogService.findAll();
+//        model.addAttribute("blogList", blogList);
+//        return "views/list";
+//    }
+
     @GetMapping("")
-    public String showList(Model model){
-        List<Blog> blogList = blogService.findAll();
+    public String search(Model model,@RequestParam(defaultValue = "") String title,@PageableDefault(size = 2) Pageable pageable){
+        Page<Blog> blogList = blogService.findBlogByTitleContaining(title,pageable);
+        model.addAttribute("categoryList",categoryService.findAll());
         model.addAttribute("blogList", blogList);
         return "views/list";
     }
@@ -72,5 +84,13 @@ public class BlogController {
     public String view(@PathVariable("id") int id,Model model){
         model.addAttribute("blog",blogService.findById(id).orElseThrow(() -> new IllegalArgumentException("Not found blog")));
         return "views/view";
+    }
+
+    @GetMapping("/searchCategory")
+    public String searchByCategory(Model model,@RequestParam int categoryId,@PageableDefault(size = 2) Pageable pageable){
+        Page<Blog> blogs = blogService.selectByCategory(categoryId,pageable);
+        model.addAttribute("categoryList",categoryService.findAll());
+        model.addAttribute("blogList", blogs);
+        return "views/listCategory";
     }
 }

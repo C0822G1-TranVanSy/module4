@@ -14,17 +14,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
+
+                    <form th:action="@{/blog/searchCategory}" id="cateSelect" method="get" style="width: 200px;">
+                        <select style="display: inline" class="form-control" name="categoryId" onchange="document.getElementById('cateSelect').submit()">
+                            <option>Quản lý danh mục</option>
+                            <option th:each="cate : ${categoryList}" th:value="${cate.id}"  th:text="${cate.name}"></option>
+                        </select>
+                    </form>&nbsp;&nbsp;
                     <li class="nav-item">
                         <a class="nav-link disabled">Disabled</a>
                     </li>

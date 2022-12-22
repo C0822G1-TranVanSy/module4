@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bee2d7d9-a948-4df0-88eb-e6a5c80a5751" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../ss4_view_thymeleaf/product_management/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ss4_view_thymeleaf/product_management/.idea/product_management.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ss4_view_thymeleaf/product_management/.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ss5_orm/product_management/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ss5_orm/product_management/.idea/product_management.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../ss5_orm/product_management/.idea/runConfigurations.xml" afterDir="false" />
-    </list>
+    <list default="true" id="bee2d7d9-a948-4df0-88eb-e6a5c80a5751" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,9 +18,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Class" />
         <option value="Interface" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -85,7 +78,7 @@
       <updated>1671597965041</updated>
       <workItem from="1671597966722" duration="14839000" />
       <workItem from="1671646289821" duration="1489000" />
-      <workItem from="1671679694611" duration="9917000" />
+      <workItem from="1671679694611" duration="21247000" />
     </task>
     <servers />
   </component>

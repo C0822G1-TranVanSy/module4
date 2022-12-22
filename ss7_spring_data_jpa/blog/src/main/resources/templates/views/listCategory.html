@@ -54,9 +54,7 @@
     </tbody>
 </table>
 <center>
-<a class="btn btn-secondary" th:href="@{/blog(page=${blogList.number - 1})}" th:if="${blogList.hasPrevious()}">Previous</a>
-<span th:text="${blogList.number + 1 + '/' + blogList.totalPages}"></span>
-<a class="btn btn-secondary" th:href="@{/blog(page=${blogList.number + 1})}" th:if="${blogList.hasNext()}">Next</a>
+    <a class="btn btn-secondary" th:href="@{/blog/searchCategory(page=${blogList.number - 1})}" th:if="${blogList.hasPrevious()}">Previous</a>
+    <span th:text="${blogList.number + 1 + '/' + blogList.totalPages}"></span>
+    <a class="btn btn-secondary" th:href="@{/blog/searchCategory(page=${blogList.number + 1})}" th:if="${blogList.hasNext()}">Next</a>
 </center>
-</body>
-</html>
