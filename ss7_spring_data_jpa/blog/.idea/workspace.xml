@@ -5,23 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bee2d7d9-a948-4df0-88eb-e6a5c80a5751" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/blog/controller/BlogController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/blog/model/Blog.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/blog/repository/IBlogRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/blog/service/IBlogService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/blog/service/impl/BlogService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/views/create.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/views/edit.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/views/layout.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/views/list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/views/view.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../giai_thuat/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../giai_thuat/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../giai_thuat/.idea/runConfigurations.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../giai_thuat/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../giai_thuat/src/Demo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ss5_orm/product_management/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../ss5_orm/product_management/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ss5_orm/product_management/.idea/modules/product_management.main.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../ss5_orm/product_management/.idea/modules/product_management.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ss4_view_thymeleaf/product_management/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ss4_view_thymeleaf/product_management/.idea/product_management.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ss4_view_thymeleaf/product_management/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ss5_orm/product_management/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ss5_orm/product_management/.idea/product_management.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ss5_orm/product_management/.idea/runConfigurations.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,14 +25,14 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="ProjectId" id="2JD1i5ERiTTcofS2UvlTsAIRQPM" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -64,6 +53,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../ss4_view_thymeleaf/product_management" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -71,6 +61,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\codegym\C0822G1_TranVanSy\module4\ss7_spring_data_jpa\blog\src\main\resources\templates" />
+      <recent name="F:\codegym\C0822G1_TranVanSy\module4\ss7_spring_data_jpa\blog\src\main\resources" />
       <recent name="F:\codegym\C0822G1_TranVanSy\module4\blog\src\main\resources\templates\views" />
     </key>
   </component>
@@ -92,6 +84,8 @@
       <option name="presentableId" value="Default" />
       <updated>1671597965041</updated>
       <workItem from="1671597966722" duration="14839000" />
+      <workItem from="1671646289821" duration="1489000" />
+      <workItem from="1671679694611" duration="9917000" />
     </task>
     <servers />
   </component>
@@ -108,6 +102,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />

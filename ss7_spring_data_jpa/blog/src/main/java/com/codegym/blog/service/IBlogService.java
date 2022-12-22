@@ -8,9 +8,9 @@ import java.util.Optional;
 public interface IBlogService {
     List<Blog> findAll();
 
-    void add(Blog blog);
+    boolean add(Blog blog);
 
-    void edit(Blog blog);
+    boolean edit(Blog blog);
 
     Optional<Blog> findById(int id);
 

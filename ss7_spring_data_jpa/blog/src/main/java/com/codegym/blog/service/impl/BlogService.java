@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -20,13 +21,25 @@ public class BlogService implements IBlogService {
     }
 
     @Override
-    public void add(Blog blog) {
+    public boolean add(Blog blog) {
+        for (int i = 0; i < findAll().size(); i++) {
+            if (findAll().get(i).getTitle().equals(blog.getTitle())) {
+                return false;
+            }
+        }
         blogRepository.save(blog);
+        return true;
     }
 
     @Override
-    public void edit(Blog blog) {
+    public boolean edit(Blog blog) {
+        for (int i = 0; i < findAll().size(); i++) {
+            if (findAll().get(i).getTitle().equals(blog.getTitle())) {
+                return false;
+            }
+        }
         blogRepository.save(blog);
+        return true;
     }
 
     @Override
