@@ -10,6 +10,7 @@ public class Blog {
     private String title;
     private String writer;
     private String content;
+    @Column(columnDefinition = "date")
     private String dateCreated;
     @ManyToOne
     private Category category;

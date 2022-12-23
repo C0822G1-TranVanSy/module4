@@ -9,14 +9,14 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a th:href="@{/blog}" class="nav-link active" aria-current="page" href="#">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
                     </li>
 
                     <form th:action="@{/blog/searchCategory}" id="cateSelect" method="get" style="width: 200px;">
-                        <select style="display: inline" class="form-control" name="categoryId" onchange="document.getElementById('cateSelect').submit()">
+                        <select style="display: inline" th:value="${}" class="form-control" name="categoryId" onchange="document.getElementById('cateSelect').submit()">
                             <option>Quản lý danh mục</option>
                             <option th:each="cate : ${categoryList}" th:value="${cate.id}"  th:text="${cate.name}"></option>
                         </select>
