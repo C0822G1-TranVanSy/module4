@@ -8,10 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface ICustomerRepository extends JpaRepository<Customer,Integer> {
-    @Query(value = "select * from furama_module4.customer where name like concat('%',:name,'%') and email like concat('%',:email,'%') and customer_type_id = :customerTypeId",nativeQuery = true)
-    Page<Customer> findCustomerByNameContainingAndEmailContainingAndCustomerType_Id(@Param("name") String name,@Param("email") String email,@Param("customerTypeId") int customerTypeId, Pageable pageable);
-
-    @Query(value = "select * from furama_module4.customer where name like concat('%',:name,'%') and email like concat('%',:email,'%')",nativeQuery = true)
-    Page<Customer> findCustomerByNameContainingAndEmailContaining(@Param("name") String name,@Param("email") String email, Pageable pageable);
+    @Query(value = "select c.* from `customer` c join `customer_type` ct on c.customer_type_id = ct.id  where c.name like %:name% and c.email like %:email% and ct.name like %:customerTypeName%" ,nativeQuery = true )
+    Page<Customer> findByNameAndEmailAndCustomerType(@Param("name") String name,@Param("email") String email,@Param("customerTypeName") String customerTypeName, Pageable pageable);
 
 }

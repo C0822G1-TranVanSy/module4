@@ -11,9 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @RequestMapping("/customer")
 @Controller
@@ -24,16 +23,24 @@ public class CustomerController {
     private ICustomerTypeService customerTypeService;
 
     @GetMapping("")
-    public String showList(Model model, @RequestParam(defaultValue = "") String name, @RequestParam(defaultValue = "") String email, @RequestParam(defaultValue = "0") int customerTypeId, @PageableDefault(size=5) Pageable pageable){
-        Page<Customer> customerPage;
-        if(customerTypeId==0){
-            customerPage = customerService.findCustomerByNameContainingAndEmailContaining(name,email,pageable);
-        }else {
-            customerPage = customerService.findCustomerByNameContainingAndEmailContainingAndCustomerType_Id(name, email, customerTypeId, pageable);
-        }
-        model.addAttribute("customerPage",customerPage);
-        model.addAttribute("customerTypeId", customerTypeId);
+    public String showList(Model model, @RequestParam(defaultValue = "") String name, @RequestParam(defaultValue = "") String email, @RequestParam(defaultValue = "") String customerTypeName, @PageableDefault(size = 5) Pageable pageable) {
+        Page<Customer> customerPage = customerService.findByNameAndEmailAndCustomerType(name, email, customerTypeName, pageable);
+        model.addAttribute("customerPage", customerPage);
         model.addAttribute("customerTypeList", customerTypeService.findAll());
         return "customer/list";
+    }
+
+    @GetMapping("/create")
+    public String showAdd(Model model){
+        model.addAttribute("customer",new Customer());
+        model.addAttribute("customerTypeList", customerTypeService.findAll());
+        return "customer/create";
+    }
+
+    @PostMapping("/create")
+    public String add(@ModelAttribute Customer customer, RedirectAttributes redirectAttributes){
+        customerService.add(customer);
+        redirectAttributes.addFlashAttribute("mess","Thêm mới thành công");
+        return "redirect:/customer";
     }
 }

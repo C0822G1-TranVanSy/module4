@@ -14,12 +14,13 @@ public class CustomerService implements ICustomerService {
     private ICustomerRepository customerRepository;
 
     @Override
-    public Page<Customer> findCustomerByNameContainingAndEmailContainingAndCustomerType_Id(String name, String email, int customerTypeId, Pageable pageable) {
-        return customerRepository.findCustomerByNameContainingAndEmailContainingAndCustomerType_Id(name,email,customerTypeId,pageable);
+    public Page<Customer> findByNameAndEmailAndCustomerType(String name, String email, String customerTypeName, Pageable pageable) {
+        return customerRepository.findByNameAndEmailAndCustomerType(name,email,customerTypeName,pageable);
     }
 
     @Override
-    public Page<Customer> findCustomerByNameContainingAndEmailContaining(String name,String email,Pageable pageable) {
-        return customerRepository.findCustomerByNameContainingAndEmailContaining(name,email,pageable);
+    public void add(Customer customer) {
+        customerRepository.save(customer);
     }
+
 }

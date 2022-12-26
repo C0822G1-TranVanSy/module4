@@ -5,41 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bee2d7d9-a948-4df0-88eb-e6a5c80a5751" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/controller/CustomerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/controller/HomeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/model/contract/AttachFacility.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/model/contract/Contract.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/model/contract/ContractDetail.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/model/customer/Customer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/model/customer/CustomerType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/model/employee/Division.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/model/employee/EducationDegree.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/model/employee/Employee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/model/employee/Position.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/model/employee/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/model/employee/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/model/facility/Facility.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/model/facility/FacilityType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/model/facility/RentType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/repository/ICustomerRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/repository/ICustomerTypeRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/service/customer/ICustomerService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/service/customer/ICustomerTypeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/service/customer/impl/CustomerService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/service/customer/impl/CustomerTypeService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/resources/templates/customer/list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/resources/templates/home.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/resources/templates/include/footer.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/resources/templates/include/header.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/resources/templates/picture/body.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/resources/templates/picture/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Tài liệu/Bộ câu hỏi Audit module 4.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Tài liệu/CG-DN Case Study for Spring_v1.1.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../Tài liệu/[BC-JAVA-WBDS]Thời khoá biểu module 4 lớp C0822G1.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ss8_validation/song_information/src/main/java/com/codeygym/controller/SongController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ss8_validation/song_information/src/main/java/com/codeygym/controller/SongController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ss8_validation/song_information/src/main/java/com/codeygym/dto/SongDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ss8_validation/song_information/src/main/java/com/codeygym/dto/SongDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ss8_validation/song_information/src/main/java/com/codeygym/service/impl/SongService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../ss8_validation/song_information/src/main/java/com/codeygym/service/impl/SongService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../ss8_validation/song_information/src/main/resources/templates/views/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../ss8_validation/song_information/src/main/resources/templates/views/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/resources/templates/customer/create.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Tài liệu module 4/CG-DN Case Study for Spring_v1.1.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../../Tài liệu module 4/CG-DN Case Study for Spring_v1.1.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Tài liệu module 4/~$-DN Case Study for Spring_v1.1.docx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/controller/CustomerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/controller/CustomerController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/repository/ICustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/repository/ICustomerRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/service/customer/ICustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/service/customer/ICustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/service/customer/impl/CustomerService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/service/customer/impl/CustomerService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../case_study/furama_management/src/main/resources/templates/customer/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/resources/templates/customer/list.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,6 +95,7 @@
       <workItem from="1672017771359" duration="108000" />
       <workItem from="1672021482299" duration="75000" />
       <workItem from="1672040783391" duration="3909000" />
+      <workItem from="1672066255934" duration="44000" />
     </task>
     <servers />
   </component>
