@@ -23,6 +23,8 @@ public class BlogService implements IBlogService {
         return blogRepository.findAll();
     }
 
+
+
     @Override
     public boolean add(Blog blog) {
         for (int i = 0; i < findAll().size(); i++) {

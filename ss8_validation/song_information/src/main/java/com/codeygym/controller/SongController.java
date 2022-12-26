@@ -16,16 +16,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequestMapping("/song")
 public class SongController {
     @Autowired
-    ISongService iSongService;
+    private ISongService iSongService;
 
     @GetMapping("")
     public String showList(Model model){
-        model.addAttribute("songList",iSongService.findAll());
+        List<Song> songList = iSongService.findAll();
+        List<SongDto> songDtoList = new ArrayList<>();
+        for (Song song : songList) {
+            SongDto songDto = new SongDto();
+            BeanUtils.copyProperties(song, songDto);
+            songDtoList.add(songDto);
+        }
+        model.addAttribute("songDtoList",songDtoList);
         return "views/list";
     }
 
@@ -37,7 +46,7 @@ public class SongController {
 
     @PostMapping("/add")
     public String add(@Validated SongDto songDto, BindingResult bindingResult, RedirectAttributes redirectAttributes){
-        if(bindingResult.hasErrors()){
+        if(bindingResult.hasFieldErrors()){
             return "views/create";
         }
         Song song = new Song();

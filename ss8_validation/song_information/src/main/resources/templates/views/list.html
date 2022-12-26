@@ -21,7 +21,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="song,status : ${songList}">
+    <tr th:each="song,status : ${songDtoList}">
         <td th:text="${status.count}"></td>
         <td th:text="${song.name}"></td>
         <td th:text="${song.singer}"></td>

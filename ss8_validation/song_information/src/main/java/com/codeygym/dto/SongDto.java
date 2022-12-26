@@ -4,7 +4,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-public class SongDto {
+public class SongDto implements Vali{
     private int id;
     @NotBlank(message = "Không được để trống")
     @Size(max=800, message = "Không được vượt quá 800 ký tự")
@@ -50,4 +50,5 @@ public class SongDto {
     public void setKindOfMusic(String kindOfMusic) {
         this.kindOfMusic = kindOfMusic;
     }
+
 }
