@@ -23,7 +23,7 @@ public class BookController {
     private IBookCodeService bookCodeService;
 
     @GetMapping("")
-    public String showList(Model model) {
+    public String showList(Model model){
         model.addAttribute("bookList", bookService.findAll());
         model.addAttribute("bookCodeList", bookCodeService.findAll());
         return "views/list";

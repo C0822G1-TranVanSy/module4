@@ -1,10 +1,7 @@
 package com.codegym.config;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.AfterThrowing;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -12,7 +9,7 @@ import java.time.LocalDateTime;
 @Component
 @Aspect
 public class LogAOP {
-
+    int count =0;
     @Pointcut("execution(* com.codegym.controller.BookController.*Book(..))")
     public void callMethod() {
     }
@@ -26,8 +23,10 @@ public class LogAOP {
     public void visitLibrary() {
     }
 
-    @AfterThrowing("visitLibrary()")
-    public void afterThrowingMethod(JoinPoint joinPoint) {
-        System.out.println("Bạn đã ghé thăm thư viện" + joinPoint.getSignature().getName() + ", time: " + LocalDateTime.now());
+    @After("visitLibrary()")
+    public void afterMethod(JoinPoint joinPoint) {
+        count++;
+        System.out.println("Bạn đã ghé thăm thư viện " + joinPoint.getSignature().getName() + ", time: " + LocalDateTime.now());
+        System.out.println("Số lần ghé thăm lên đến: " + count + " lần");
     }
 }
