@@ -52,6 +52,7 @@
             <td th:text="${customer.email}"></td>
             <td th:text="${customer.address}"></td>
             <td>
+                <a class="btn btn-warning" th:href="@{/customer/update/__${customer.id}__}">Update</a>
 <!--                <button onclick="infoEdit('${customer.getId()}','${customer.customerType.getId()}','${customer.getName()}','${customer.getDateOfBirth()}',-->
 <!--                        '${customer.getIdCard()}','${customer.getPhoneNumber()}','${customer.getEmail()}','${customer.getAddress()}','${customer.gender}')"-->
 <!--                        type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit">-->

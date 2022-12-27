@@ -38,6 +38,21 @@ public class CustomerController {
         return "customer/create";
     }
 
+    @PostMapping("/update")
+    public String update( Customer customer, RedirectAttributes redirectAttributes){
+        customerService.update(customer);
+        redirectAttributes.addFlashAttribute("mess","Chỉnh sửa thành công");
+        return "redirect:/customer";
+    }
+
+    @GetMapping("/update/{id}")
+    public String showUpdate(@PathVariable int id, Model model){
+        Customer customer = customerService.findById(id).orElseThrow(()-> new IllegalArgumentException("not found"));
+        model.addAttribute("customer",customer);
+        model.addAttribute("customerTypeList", customerTypeService.findAll());
+        return "customer/update";
+    }
+
     @PostMapping("/create")
     public String add(Customer customer, RedirectAttributes redirectAttributes){
         customerService.add(customer);

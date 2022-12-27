@@ -11,6 +11,8 @@ public interface ICustomerService {
 
     void add(Customer customer);
 
+    void update(Customer customer);
+
     void remove(int id);
 
     Optional<Customer> findById(int id);
