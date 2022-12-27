@@ -18,6 +18,16 @@ public class Customer {
     @Column(columnDefinition = "date")
     private String dateOfBirth;
     private boolean gender;
+    @Column(columnDefinition = "varchar(45)",unique = true)
+    private String idCard;
+    @Column(columnDefinition = "varchar(45)",unique = true)
+    private String phoneNumber;
+    @Column(columnDefinition = "varchar(45)",unique = true)
+    private String email;
+    @Column(columnDefinition = "varchar(45)")
+    private String address;
+    @OneToMany(mappedBy = "customer")
+    private Set<Contract> contracts;
 
     public int getId() {
         return id;
@@ -99,14 +109,5 @@ public class Customer {
         this.contracts = contracts;
     }
 
-    @Column(columnDefinition = "varchar(45)")
-    private String idCard;
-    @Column(columnDefinition = "varchar(45)")
-    private String phoneNumber;
-    @Column(columnDefinition = "varchar(45)")
-    private String email;
-    @Column(columnDefinition = "varchar(45)")
-    private String address;
-    @OneToMany(mappedBy = "customer")
-    private Set<Contract> contracts;
+
 }

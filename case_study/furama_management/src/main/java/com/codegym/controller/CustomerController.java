@@ -27,6 +27,7 @@ public class CustomerController {
         Page<Customer> customerPage = customerService.findByNameAndEmailAndCustomerType(name, email, customerTypeName, pageable);
         model.addAttribute("customerPage", customerPage);
         model.addAttribute("customerTypeList", customerTypeService.findAll());
+        model.addAttribute("customerTypeName",customerTypeName);
         return "customer/list";
     }
 
@@ -38,9 +39,16 @@ public class CustomerController {
     }
 
     @PostMapping("/create")
-    public String add(@ModelAttribute Customer customer, RedirectAttributes redirectAttributes){
+    public String add(Customer customer, RedirectAttributes redirectAttributes){
         customerService.add(customer);
         redirectAttributes.addFlashAttribute("mess","Thêm mới thành công");
+        return "redirect:/customer";
+    }
+
+    @PostMapping("/delete")
+    public String delete(@RequestParam int id,RedirectAttributes redirectAttributes){
+        customerService.remove(id);
+        redirectAttributes.addFlashAttribute("mess", "Xóa thành công");
         return "redirect:/customer";
     }
 }

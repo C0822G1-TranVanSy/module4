@@ -16,7 +16,7 @@
                     </li>
 
                     <form th:action="@{/blog/searchCategory}" id="cateSelect" method="get" style="width: 200px;">
-                        <select style="display: inline" th:value="${}" class="form-control" name="categoryId" onchange="document.getElementById('cateSelect').submit()">
+                        <select style="display: inline" class="form-control" name="categoryId" onchange="document.getElementById('cateSelect').submit()">
                             <option>Quản lý danh mục</option>
                             <option th:each="cate : ${categoryList}" th:value="${cate.id}"  th:text="${cate.name}"></option>
                         </select>
