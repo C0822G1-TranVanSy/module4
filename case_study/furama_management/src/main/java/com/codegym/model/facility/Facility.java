@@ -24,11 +24,11 @@ public class Facility {
     @Column(columnDefinition = "varchar(45)")
     private String standardRoom;
     @Column(columnDefinition = "varchar(45)")
-    private String description_other_convenience;
+    private String descriptionOtherConvenience;
     private Double poolArea;
-    private int numberOfFloors;
+    private Integer numberOfFloors;
     @Column(columnDefinition = "text")
-    private String facility_free;
+    private String facilityFree;
     @OneToMany(mappedBy = "facility")
     private Set<Contract> contracts;
 
@@ -96,12 +96,12 @@ public class Facility {
         this.standardRoom = standardRoom;
     }
 
-    public String getDescription_other_convenience() {
-        return description_other_convenience;
+    public String getDescriptionOtherConvenience() {
+        return descriptionOtherConvenience;
     }
 
-    public void setDescription_other_convenience(String description_other_convenience) {
-        this.description_other_convenience = description_other_convenience;
+    public void setDescriptionOtherConvenience(String descriptionOtherConvenience) {
+        this.descriptionOtherConvenience = descriptionOtherConvenience;
     }
 
     public Double getPoolArea() {
@@ -112,20 +112,20 @@ public class Facility {
         this.poolArea = poolArea;
     }
 
-    public int getNumberOfFloors() {
+    public Integer getNumberOfFloors() {
         return numberOfFloors;
     }
 
-    public void setNumberOfFloors(int numberOfFloors) {
+    public void setNumberOfFloors(Integer numberOfFloors) {
         this.numberOfFloors = numberOfFloors;
     }
 
-    public String getFacility_free() {
-        return facility_free;
+    public String getFacilityFree() {
+        return facilityFree;
     }
 
-    public void setFacility_free(String facility_free) {
-        this.facility_free = facility_free;
+    public void setFacilityFree(String facilityFree) {
+        this.facilityFree = facilityFree;
     }
 
     public Set<Contract> getContracts() {

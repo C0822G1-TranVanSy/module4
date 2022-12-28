@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+</head>
+<body>
+<script src="/js/bootstrap.js"></script>
+
+<p>
+    <a href="/cart" class="btn btn-danger m-2">Go to giỏ hàng</a>
+</p>
+<h1 class="text-center text-primary">Danh sách sản phẩm</h1>
+<div class="d-flex justify-content-center">
+    <div th:each="product:${products}" class="card" style="width: 18rem;">
+        <a th:href="@{/view/__${product.id}__}"><img th:src="${product.img}" class="card-img-top" alt="..."></a>
+        <div class="card-body text-center">
+            <h5 class="card-title" th:text="${product.name}"></h5>
+            <p class="card-text" th:text="${product.price}"></p>
+<!--            <a th:href="@{/add/__${product.id}__}" class="btn btn-primary">Add To Cart</a>-->
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
