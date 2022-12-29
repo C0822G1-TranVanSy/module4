@@ -2,8 +2,6 @@ package com.codegym.controller;
 
 import com.codegym.exception.EmptyException;
 import com.codegym.exception.NotFoundCodeException;
-import org.hibernate.annotations.NotFound;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 

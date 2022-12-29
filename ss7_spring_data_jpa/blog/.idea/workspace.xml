@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bee2d7d9-a948-4df0-88eb-e6a5c80a5751" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/java/com/codegym/controller/HomeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../case_study/furama_management/src/main/resources/templates/facility/create.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../case_study/furama_management/src/main/resources/templates/facility/create.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -93,6 +92,7 @@
       <workItem from="1672112467020" duration="126000" />
       <workItem from="1672130209770" duration="1130000" />
       <workItem from="1672295373142" duration="1811000" />
+      <workItem from="1672297561786" duration="5000" />
     </task>
     <servers />
   </component>
