@@ -4,7 +4,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-public class SongDto implements Vali{
+public class SongDto{
     private int id;
     @NotBlank(message = "Không được để trống")
     @Size(max=800, message = "Không được vượt quá 800 ký tự")

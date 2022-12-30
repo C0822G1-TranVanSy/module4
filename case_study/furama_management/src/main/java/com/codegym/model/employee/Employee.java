@@ -16,12 +16,12 @@ public class Employee {
     private String name;
     @Column(columnDefinition = "date")
     private String dateOfBirth;
-    @Column(columnDefinition = "varchar(45)")
+    @Column(columnDefinition = "varchar(45)",unique = true)
     private String id_card;
     private Double salary;
-    @Column(columnDefinition = "varchar(45)")
+    @Column(columnDefinition = "varchar(45)",unique = true)
     private String phone_number;
-    @Column(columnDefinition = "varchar(45)")
+    @Column(columnDefinition = "varchar(45)",unique = true)
     private String email;
     @Column(columnDefinition = "varchar(45)")
     private String address;

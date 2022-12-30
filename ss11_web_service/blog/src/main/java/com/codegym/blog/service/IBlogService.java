@@ -20,7 +20,9 @@ public interface IBlogService {
 
     void delete(int id);
 
-    Page<Blog> findBlogByTitleContaining(String title, Pageable pageable);
+    Page<Blog> findBlogByTitle(String title, Pageable pageable);
+
+    List<Blog> findBlogByTitleContaining(String title);
 
     Page<Blog> selectByCategory(int categoryId,Pageable pageable);
 

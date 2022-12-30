@@ -12,6 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.Objects;
+
 @Controller
 @RequestMapping("/facility")
 public class FacilityController {
@@ -25,7 +27,12 @@ public class FacilityController {
 
     @GetMapping("")
     public String showList(Model model, @RequestParam(defaultValue = "") String name, @RequestParam(defaultValue = "") String facilityTypeName, @PageableDefault(size = 5) Pageable pageable) {
-        Page<Facility> facilityPage = facilityService.findByNameAndFacilityType(name, facilityTypeName, pageable);
+        Page<Facility> facilityPage;
+        if(Objects.equals(facilityTypeName, "")){
+             facilityPage = facilityService.findAll(pageable);
+        }else {
+             facilityPage = facilityService.findByNameAndFacilityType(name, facilityTypeName, pageable);
+        }
         model.addAttribute("facilityPage", facilityPage);
         model.addAttribute("facilityTypeList", facilityTypeService.findAll());
         model.addAttribute("rentTypeList", rentTypeService.findAll());

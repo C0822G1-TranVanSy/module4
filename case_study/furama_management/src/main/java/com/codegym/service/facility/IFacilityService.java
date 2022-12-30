@@ -10,6 +10,8 @@ import java.util.Optional;
 public interface IFacilityService {
     Page<Facility> findByNameAndFacilityType(String name, String facilityTypeName, Pageable pageable);
 
+    Page<Facility> findAll(Pageable pageable);
+
     void add(Facility facility);
 
     void update(Facility facility);

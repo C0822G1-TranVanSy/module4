@@ -20,6 +20,11 @@ public class FacilityService implements IFacilityService {
     }
 
     @Override
+    public Page<Facility> findAll(Pageable pageable) {
+        return facilityRepository.findAll(pageable);
+    }
+
+    @Override
     public void add(Facility facility) {
         facilityRepository.save(facility);
     }

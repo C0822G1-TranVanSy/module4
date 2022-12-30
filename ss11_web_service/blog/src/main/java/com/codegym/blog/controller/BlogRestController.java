@@ -16,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/blogs")
+@CrossOrigin("*")
 public class BlogRestController {
     @Autowired
     private IBlogService blogService;
@@ -47,6 +48,15 @@ public class BlogRestController {
         if(blogs.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
+        return new ResponseEntity<>(blogs,HttpStatus.OK);
+    }
+
+    @GetMapping ("/searchBlogByTitle")
+    public ResponseEntity<List<Blog>> searchByCategory(@RequestParam("title") String title){
+        List<Blog> blogs = blogService.findBlogByTitleContaining(title);
+//        if(blogs.isEmpty()){
+//            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+//        }
         return new ResponseEntity<>(blogs,HttpStatus.OK);
     }
 
