@@ -11,11 +11,11 @@ import java.util.Optional;
 public interface IContractService {
     Page<Contract> findAll(Pageable pageable);
 
-    void add(Customer customer);
+    void add(Contract contract);
 
-    void update(Customer customer);
+    void update(Contract contract);
 
     void remove(int id);
 
-    Optional<Customer> findById(int id);
+    Optional<Contract> findById(int id);
 }

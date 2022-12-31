@@ -1,16 +1,9 @@
 package com.codegym.dto.customer;
 
-import com.codegym.model.customer.Customer;
+
 import com.codegym.model.customer.CustomerType;
-import com.codegym.service.customer.ICustomerService;
-import org.springframework.beans.BeanUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 public class CustomerDto implements Validator {
@@ -19,8 +12,6 @@ public class CustomerDto implements Validator {
     private CustomerType customerType;
     @Pattern(regexp = "[a-zA-z ]+", message = "ko được nhập số")
     private String name;
-    @NotBlank(message = "Không được để trống")
-    @Pattern(regexp = "[\\d]{2}/[\\d]{2}/[\\d]{4}",message = "chưa đúng định dạng")
     private String dateOfBirth;
     private boolean gender;
     @Pattern(regexp = "[\\d]{9}",message = "Id Card 9 số")
@@ -111,6 +102,9 @@ public class CustomerDto implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         CustomerDto customerDto = (CustomerDto) target;
-
+        String reg = "^([\\d]{2}/[\\d]{2}/[\\d]{4})$";
+        if(customerDto.dateOfBirth.equals("") || !reg.matches(customerDto.dateOfBirth)){
+            errors.rejectValue("dateOfBirth",getDateOfBirth(),"Không đúng định dạng dd/mm/yyyy");
+        }
     }
 }

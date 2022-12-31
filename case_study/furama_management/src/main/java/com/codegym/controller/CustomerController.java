@@ -71,7 +71,6 @@ public class CustomerController {
         Customer customer = new Customer();
         BeanUtils.copyProperties(customerDto,customer);
         Map<String,String> errorMap = customerService.getError(customer);
-
         if(errorMap.get("errorIdCard")!= null) {
             bindingResult.rejectValue("idCard", "idCard", errorMap.get("errorIdCard"));
         }
@@ -80,7 +79,7 @@ public class CustomerController {
         }
         if(errorMap.get("errorEmail")!= null) {
         bindingResult.rejectValue("email","email",errorMap.get("errorEmail"));}
-        if(bindingResult.hasFieldErrors()){
+        if(bindingResult.hasErrors()){
             model.addAttribute("customerTypeList", customerTypeService.findAll());
             return "customer/create";
         }

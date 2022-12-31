@@ -11,6 +11,69 @@
 <div th:insert="~{/include/header::head}"></div>
 
 <h2 class="d-flex justify-content-center text-danger">Contract List</h2>
+
+<button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+        data-bs-target="#add">
+    Thêm mới hợp đồng
+</button>
+
+<div class="modal fade" id="add" tabindex="-1" aria-labelledby="addLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addLabel">Thêm hợp đồng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/contract/create" method="post" th:object="${contract}">
+            <div class="modal-body">
+
+                <div class="mb-3 row">
+                    <label th:for="startDate" class="col-sm-3 col-form-label ">Ngày bắt đầu</label>
+                    <div class="col-sm-9">
+                        <input type="date" class="form-control" th:field="*{startDate}">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label th:for="endDate" class="col-sm-3 col-form-label">Ngày kết thúc</label>
+                    <div class="col-sm-9">
+                        <input type="date" class="form-control" th:field="*{endDate}">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label th:for="deposit" class="col-sm-3 col-form-label">Tiền đặt cọc</label>
+                    <div class="col-sm-9">
+                        <input type="password" class="form-control" th:field="*{deposit}">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-3 col-form-label">Khách hàng thuê dịch vụ</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" th:field="*{customer}">
+                            <option value="">Chọn Khách hàng</option>
+                            <option th:each="item: ${customerList}"  th:value="${item.id}" th:text="${item.name}"></option>
+                        </select>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label class="col-sm-3 col-form-label">Dịch vụ</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" th:field="*{facility}">
+                            <option value="">Chọn dịch vụ</option>
+                            <option th:each="item: ${facilityList}"  th:value="${item.id}" th:text="${item.name}"></option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 <table class="table table-striped table-hover" style="--bs-table-hover-bg: lightpink">
     <thead>
     <tr>
@@ -155,6 +218,7 @@
         </div>
     </div>
 </div>
+
 <div class="modal fade" id="attach_facility" tabindex="-1" aria-labelledby="attach_facilityLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -165,22 +229,19 @@
             <div class="modal-body">
                 <table class="table">
                     <tr>
-                        <th>Tên dịch vụ đi kèm</th>
-                        <th>Số lượng</th>
+                        <th>STT</th>
+                        <th>Attach Facility Name</th>
+                        <th>Cost</th>
+                        <th>Unit</th>
+                        <th>Status</th>
                     </tr>
-                    <tr>
-                        <td>Karaoke</td>
-                        <td>10</td>
+                    <tr th:each="item,status:${attachFacilityList}">
+                        <td th:text="${status.count}"></td>
+                        <td th:text="${item.name}"></td>
+                        <td th:text="${item.cost}"></td>
+                        <td th:text="${item.unit}"></td>
+                        <td th:text="${item.status}"></td>
                     </tr>
-                    <tr>
-                        <td>bear hug</td>
-                        <td>10</td>
-                    </tr>
-                    <tr>
-                        <td>bitch</td>
-                        <td>10</td>
-                    </tr>
-
                 </table>
             </div>
             <div class="modal-footer">

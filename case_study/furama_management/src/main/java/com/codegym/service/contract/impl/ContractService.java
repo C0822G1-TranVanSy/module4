@@ -22,22 +22,22 @@ public class ContractService implements IContractService {
     }
 
     @Override
-    public void add(Customer customer) {
-
+    public void add(Contract contract) {
+        contractRepository.save(contract);
     }
 
     @Override
-    public void update(Customer customer) {
-
+    public void update(Contract contract) {
+        contractRepository.save(contract);
     }
 
     @Override
     public void remove(int id) {
-
+        contractRepository.deleteById(id);
     }
 
     @Override
-    public Optional<Customer> findById(int id) {
-        return Optional.empty();
+    public Optional<Contract> findById(int id) {
+        return contractRepository.findById(id);
     }
 }
