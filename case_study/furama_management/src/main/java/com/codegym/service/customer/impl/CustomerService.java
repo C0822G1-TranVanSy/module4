@@ -44,6 +44,7 @@ public class CustomerService implements ICustomerService {
         for (Customer c: findAll()) {
             if(c.getIdCard().equals(customer.getIdCard())){
                 errorMap.put("errorIdCard","Trùng id card");
+//                throw new Exception("E_CONFLICT_ID");
             }
             if(c.getPhoneNumber().equals(customer.getPhoneNumber())){
                 errorMap.put("errorPhoneNumber","Trùng số phone");

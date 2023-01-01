@@ -66,7 +66,7 @@ public class CustomerController {
     }
 
     @PostMapping("/create")
-    public String add(CustomerDto customerDto, BindingResult bindingResult,Model model, RedirectAttributes redirectAttributes){
+    public String add(CustomerDto customerDto, BindingResult bindingResult,Model model, RedirectAttributes redirectAttributes) {
         new CustomerDto().validate(customerDto,bindingResult);
         Customer customer = new Customer();
         BeanUtils.copyProperties(customerDto,customer);
@@ -83,8 +83,16 @@ public class CustomerController {
             model.addAttribute("customerTypeList", customerTypeService.findAll());
             return "customer/create";
         }
+//        String mess = "";
         if(errorMap.isEmpty()){
-            customerService.add(customer);
+//            try {
+                customerService.add(customer);
+//            } catch (Exception ex) {
+//                if (ex.get() == "E_CONFLICT_ID") {
+//                    mess="bị trùng sdt";
+//                }
+//            }
+
             redirectAttributes.addFlashAttribute("mess","Thêm mới thành công");
         }
         return "redirect:/customer";

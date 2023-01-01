@@ -31,7 +31,13 @@ public class FacilityService implements IFacilityService {
     }
 
     @Override
-    public void add(Facility facility) {
+    public void add(Facility facility) throws Exception {
+        for (Facility f:findAll()
+             ) {
+            if(f.getName().equals(facility.getName())){
+                throw new Exception("facility already exists");
+            }
+        }
         facilityRepository.save(facility);
     }
 

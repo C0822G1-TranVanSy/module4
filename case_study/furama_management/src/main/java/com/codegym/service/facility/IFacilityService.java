@@ -15,7 +15,7 @@ public interface IFacilityService {
 
     List<Facility> findAll();
 
-    void add(Facility facility);
+    void add(Facility facility) throws Exception;
 
     void update(Facility facility);
 
