@@ -1,17 +1,17 @@
 package com.codegym.dto.facility;
 
 
+import com.codegym.model.facility.Facility;
 import com.codegym.model.facility.FacilityType;
 import com.codegym.model.facility.RentType;
 import net.bytebuddy.implementation.bind.annotation.Empty;
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
 
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
 
-public class FacilityDto {
+public class FacilityDto implements Validator {
     private int id;
-    @Pattern(regexp = "[A-Z][\\w]+", message = "Không đúng định dạng")
-    @NotEmpty(message = "Không được để trống")
     private String name;
     private int area;
     private Double cost;
@@ -121,4 +121,19 @@ public class FacilityDto {
         this.facilityFree = facilityFree;
     }
 
+    @Override
+    public boolean supports(Class<?> clazz) {
+        return false;
+    }
+
+    @Override
+    public void validate(Object target, Errors errors) {
+        FacilityDto facilityDto = (FacilityDto) target;
+        String reg = "[A-Z][\\w ]+";
+        if(facilityDto.name.equals("")){
+            errors.rejectValue("name","name","Không được để trống");
+        }else if(!facilityDto.name.matches(reg)){
+            errors.rejectValue("name","name","Không đúng định dạng");
+        }
+    }
 }

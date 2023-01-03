@@ -69,23 +69,23 @@ public class FacilityController {
     }
 
     @PostMapping("/create")
-    public String add(FacilityDto facilityDto, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String add(FacilityDto facilityDto, BindingResult bindingResult,Model model, RedirectAttributes redirectAttributes) {
         Facility facility = new Facility();
         BeanUtils.copyProperties(facilityDto, facility);
+        new FacilityDto().validate(facilityDto, bindingResult);
         if (bindingResult.hasErrors()) {
+            model.addAttribute("facilityTypeList", facilityTypeService.findAll());
+            model.addAttribute("rentTypeList", rentTypeService.findAll());
             return "facility/create";
         }
         try {
             facilityService.add(facility);
             redirectAttributes.addFlashAttribute("mess", "Thêm mới thành công");
         } catch (Exception e) {
-//            if(e.getMessage()){
-
             bindingResult.rejectValue("name", "name", "Trùng tên dịch vụ");
-            if (bindingResult.hasErrors()) {
-                return "facility/create";
-            }
-//            }
+            model.addAttribute("facilityTypeList", facilityTypeService.findAll());
+            model.addAttribute("rentTypeList", rentTypeService.findAll());
+            return "facility/create";
         }
         return "redirect:/facility";
     }

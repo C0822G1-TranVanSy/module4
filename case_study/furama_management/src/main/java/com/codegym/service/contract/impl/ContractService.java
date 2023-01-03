@@ -1,5 +1,6 @@
 package com.codegym.service.contract.impl;
 
+import com.codegym.dto.contract.IContractDto;
 import com.codegym.model.contract.Contract;
 import com.codegym.model.customer.Customer;
 import com.codegym.repository.contract.IContractRepository;
@@ -19,6 +20,11 @@ public class ContractService implements IContractService {
     @Override
     public Page<Contract> findAll(Pageable pageable) {
         return contractRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<IContractDto> findAllContract(Pageable pageable) {
+        return contractRepository.findAllContract(pageable);
     }
 
     @Override

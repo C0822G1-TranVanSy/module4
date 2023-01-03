@@ -68,7 +68,7 @@
             url: "http://localhost:8080/blogs/searchBlogByTitle?title=" + title,
             //xử lý khi thành công
             success: function (data) {
-                //data => đang ở dạng json
+
                 let table = '';// lưu trữ table
                 for (let i = 0; i < data.length; i++) {
                     table +=

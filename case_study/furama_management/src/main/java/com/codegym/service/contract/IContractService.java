@@ -1,5 +1,6 @@
 package com.codegym.service.contract;
 
+import com.codegym.dto.contract.IContractDto;
 import com.codegym.model.contract.Contract;
 import com.codegym.model.customer.Customer;
 import org.springframework.data.domain.Page;
@@ -10,6 +11,8 @@ import java.util.Optional;
 
 public interface IContractService {
     Page<Contract> findAll(Pageable pageable);
+
+    Page<IContractDto> findAllContract(Pageable pageable);
 
     void add(Contract contract);
 

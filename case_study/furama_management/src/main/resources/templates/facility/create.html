@@ -15,7 +15,7 @@
 <h2 class="d-flex justify-content-center text-danger">Thêm mới dịch vụ</h2>
 <form action="/facility/create" method="post" th:object="${facilityDto}">
 
-    <div class="m-2 row">
+    <div class="m-4 row">
         <div class="col-sm-2">Facility Type Name</div>
         <div class="col-sm-10">
             <select th:field="*{facilityType}" id="facilityType" class="form-select bg-dark text-light" onchange="showEdit()">
@@ -23,32 +23,32 @@
             </select>
         </div>
     </div>
-    <div class="m-2 row">
+    <div class="m-4 row">
         <label th:for="name" class="col-sm-2 col-form-label">Name: </label>
         <div class="col-sm-10">
             <input type="text" class="form-control" th:field="*{name}">
-            <p th:errors="*{name}" style="position: absolute" class="text-danger"></p>
+            <p th:errors="*{name}" style="position: absolute" class="text-danger small"></p>
         </div>
     </div>
-    <div class="m-2 row">
+    <div class="m-4 row">
         <label th:for="area" class="col-sm-2 col-form-label">Area: </label>
         <div class="col-sm-10">
             <input type="text" class="form-control" th:field="*{area}">
         </div>
     </div>
-    <div class="m-2 row">
+    <div class="m-4 row">
         <label th:for="cost" class="col-sm-2 col-form-label">Cost: </label>
         <div class="col-sm-10">
             <input type="text" class="form-control" th:field="*{cost}">
         </div>
     </div>
-    <div class="m-2 row">
+    <div class="m-4 row">
         <label th:for="maxPeople" class="col-sm-2 col-form-label">Max People: </label>
         <div class="col-sm-10">
             <input type="text" class="form-control" th:field="*{maxPeople}">
         </div>
     </div>
-    <div class="m-2 row">
+    <div class="m-4 row">
         <div class="col-sm-2">Rent Type Name</div>
         <div class="col-sm-10">
             <select th:field="*{rentType}" class="form-select">
@@ -58,7 +58,7 @@
     </div>
 
     <div id="standardRoomAdd">
-        <div class="m-2 row">
+        <div class="m-4 row">
             <label th:for="standardRoom" class="col-sm-2 col-form-label">Standard Room: </label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" th:field="*{standardRoom}">
@@ -66,7 +66,7 @@
         </div>
     </div>
     <div id="descriptionAdd">
-        <div class="m-2 row">
+        <div class="m-4 row">
             <label th:for="descriptionOtherConvenience" class="col-sm-2 col-form-label">Description Other
                 Convenience: </label>
             <div class="col-sm-10">
@@ -75,7 +75,7 @@
         </div>
     </div>
     <div id="poolAreaAdd">
-        <div class="m-2 row">
+        <div class="m-4 row">
             <label th:for="poolArea" class="col-sm-2 col-form-label">Pool Area: </label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" th:field="*{poolArea}">
@@ -83,16 +83,16 @@
         </div>
     </div>
     <div id="numberOfFloorsAdd">
-        <div class="m-2 row">
+        <div class="m-4 row">
             <label th:for="numberOfFloors" class="col-sm-2 col-form-label">Number Of Floors: </label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" th:field="*{numberOfFloors}">
-                <p th:errors="*{numberOfFloors}" style="position: absolute" class="text-danger"></p>
+                <p th:errors="*{numberOfFloors}" style="position: absolute" class="text-danger small"></p>
             </div>
         </div>
     </div>
     <div id="facilityFreeAdd">
-        <div class="m-2 row">
+        <div class="m-4 row">
             <label th:for="facilityFree" class="col-sm-2 col-form-label">Facility Free: </label>
             <div class="col-sm-10">
                 <input type="text" class="form-control" th:field="*{facilityFree}">

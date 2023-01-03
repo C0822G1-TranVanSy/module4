@@ -1,5 +1,6 @@
 package com.codegym.model.contract;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ public class AttachFacility {
     @Column(columnDefinition = "varchar(45)")
     private String status;
     @OneToMany(mappedBy = "attachFacility")
+    @JsonBackReference
     private Set<ContractDetail> contractDetail;
 
     public int getId() {

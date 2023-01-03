@@ -13,9 +13,9 @@ public class Contract {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "contract_id")
     private int id;
-    @Column(columnDefinition = "datetime")
+    @Column(columnDefinition = "date")
     private String startDate;
-    @Column(columnDefinition = "datetime")
+    @Column(columnDefinition = "date")
     private String endDate;
     private Double deposit;
     @ManyToOne
