@@ -16,7 +16,7 @@
         data-bs-target="#add">
     Thêm mới hợp đồng
 </button>
-
+<!-------------------------------------------- Thêm mới ----------------->
 <div class="modal fade" id="add" tabindex="-1" aria-labelledby="addLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -102,25 +102,26 @@
     <tbody>
     <tr th:each="contract,status: ${contractPage.content}">
         <td th:text="${status.count + contractPage.number*contractPage.size}">
-        <td th:text="${contract.getFacility().name}"></td>
-        <td th:text="${contract.getCustomer().name}"></td>
+        <td th:text="${contract.getFacilityName()}"></td>
+        <td th:text="${contract.getCustomerName()}"></td>
         <td th:text="${contract.getStartDate()}"></td>
         <td th:text="${contract.getEndDate()}"></td>
         <td th:text="${contract.getDeposit()}"></td>
-        <td>0.0</td>
-<!--        <td th:text="${contract.getTotal()}"> </td>-->
+<!--        <td>0.0</td>-->
+        <td th:text="${contract.getTotal()}"> </td>
         <td>
-            <!-- Button trigger modal -->
+
+<!--            <button type="button"-->
+<!--                    th:attr="onclick=|updateContract('${contract.id}','${contract.startDate}','${contract.endDate}','${contract.deposit}','${contract.customer.id}','${contract.employee.id}','${contract.facility.id}')|"-->
+<!--                    class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#update">-->
+<!--                +-->
+<!--            </button>   -->
             <button type="button"
-                    th:attr="onclick=|updateContract('${contract.id}','${contract.startDate}','${contract.endDate}','${contract.deposit}','${contract.customer.id}','${contract.employee.id}','${contract.facility.id}')|"
+                    th:attr="onclick=|updateContract('${contract.getId()}','${contract.getStartDate()}','${contract.getEndDate()}','${contract.getDeposit()}','${contract.getCustomerId()}','${contract.getEmployeeId()}','${contract.getFacilityId()}')|"
                     class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#update">
                 +
             </button>
-<!--            <a class="btn btn-primary" th:href="@{contract/view/__${contract.id}__}">-->
-<!--                &lt;!&ndash;                    data-bs-target="#attach_facility">&ndash;&gt;-->
-<!--                Danh sách dịch vụ đi kèm-->
-<!--            </a>-->
-            <button type="button" th:attr="onclick=|searchId('${contract.id}')|"
+            <button type="button" th:attr="onclick=|searchId('${contract.getId()}')|"
                     class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#attach_facility">
                 Danh sách dịch vụ đi kèm
             </button>
@@ -130,7 +131,7 @@
     </tbody>
 </table>
 
-<!-- Modal update -->
+<!------------------------------------------- Modal update ------------------------------------------>
 <div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -198,7 +199,7 @@
                     <div class="mb-3 row">
                         <span class="col-sm-3 col-form-label">Dịch vụ đi kèm</span>
                         <div class="col-sm-9">
-                            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                            <button type="button" class="btn btn-sm btn-primary" onclick="getContractId()" data-bs-toggle="modal"
                                     data-bs-target="#dvdk">
                                 +
                             </button>
@@ -221,22 +222,26 @@
                 <h5 class="modal-title" id="modal1">Thêm dịch vụ đi kèm</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="/contract/addAttachFacility" method="get" th:object="${contractDetail}">
+
             <div class="modal-body">
+                <form th:object="${contractDetail}">
+                    <input type="hidden" id="contractIdPro" th:field="*{contract}" >
                 <div class="mb-3 row">
                     <label class="col-sm-3 col-form-label ">Dịch vụ đi kèm</label>
+
                     <div class="col-sm-9">
-                        <select class="form-control" th:field="*{attachFacility}">
+                        <select class="form-control" id="attachFacilityPro" th:field="*{attachFacility}">
                             <option value="">Chọn dịch vụ đi kèm</option>
                             <option th:each="attachFacility: ${attachFacilityList}" th:value="${attachFacility.id}" th:text="${attachFacility.name}">Kara</option>
 
                         </select>
                     </div>
                 </div>
+            </form>
                 <div class="mb-3 row">
                     <label class="col-sm-3 col-form-label ">Số lượng</label>
                     <div class="col-sm-9">
-                        <input class="form-control" type="text" th:field="*{quantity}">
+                        <input class="form-control" type="text" id="quantityPro" >
                     </div>
                 </div>
             </div>
@@ -244,9 +249,10 @@
                 <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Hủy bỏ
                 </button>
-                <button type="button" class="btn btn-warning">Tạo hợp đồng</button>
+                <button type="button" class="btn btn-warning" onclick="addNewContractDetail()" >Tạo hợp đồng</button>
             </div>
-            </form>
+
+<!--            th:attr="onclick=|addNewContractDetail('${contract.id}')|"-->
         </div>
     </div>
 </div>
@@ -270,13 +276,6 @@
                     </tr>
                     </thead>
                     <tbody id="my-body">
-                    <!--                    <tr th:each="item,status:${attachFacilityList}">-->
-                    <!--                        <td th:text="${status.count}"></td>-->
-                    <!--                        <td th:text="${item.name}"></td>-->
-                    <!--                        <td th:text="${item.cost}"></td>-->
-                    <!--                        <td th:text="${item.unit}"></td>-->
-                    <!--                        <td th:text="${item.status}"></td>-->
-                    <!--                    </tr>-->
                     </tbody>
                 </table>
             </div>
@@ -287,7 +286,7 @@
         </div>
     </div>
 </div>
-<input type="hidden" id="modalCheck" th:value="${modal}">
+<!--<input type="hidden" id="modalCheck" th:value="${modal}">-->
 
 <div th:insert="~{/include/footer::foot}" class="mt-2"></div>
 
@@ -302,6 +301,48 @@
         crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
         crossorigin="anonymous"></script>
+
+<script>
+    function ok() {
+        $('#dvdk').hide();
+        $('.modal-backdrop').hide();
+        // $('#exampleModal').modal('toggle');
+    }
+
+    function getContractId(){
+        let id = document.getElementById("idContractEdit").value
+        document.getElementById("contractIdPro").value=id
+    }
+
+    function addNewContractDetail() {
+        //lay du lieu
+        ok()
+        let contractId = $('#contractIdPro').val();
+        let attachFacility = $('#attachFacilityPro').val();
+        let quantity = $('#quantityPro').val();
+        let newContractDetail = {
+            contract: contractId,
+            attachFacility: attachFacility,
+            quantity: quantity
+        };
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            type: "POST",
+            data: JSON.stringify(newContractDetail),
+            //tên API
+            url: "/contracts/create",
+            //xử lý khi thành công
+            success: console.log("success"),
+
+        });
+        //chặn sự kiện mặc định của thẻ
+        // event.preventDefault();
+        searchId(contractId)
+    }
+</script>
 
 <script>
     function searchId(id) {
@@ -333,7 +374,6 @@
         });
     }
 
-    // searchId()
 </script>
 
 <script>

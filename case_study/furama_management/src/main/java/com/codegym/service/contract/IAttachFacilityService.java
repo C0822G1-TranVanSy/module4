@@ -8,4 +8,6 @@ public interface IAttachFacilityService {
     List<AttachFacility> findAll();
 
     List<AttachFacility> findByContractId(int id);
+
+    AttachFacility findById(int id);
 }

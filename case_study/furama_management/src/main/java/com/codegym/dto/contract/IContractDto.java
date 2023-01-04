@@ -2,9 +2,12 @@ package com.codegym.dto.contract;
 
 public interface IContractDto {
     int getId();
-    String getFacility();
-    String getEmployee();
-    String getCustomer();
+    int getFacilityId();
+    int getEmployeeId();
+    int getCustomerId();
+    String getFacilityName();
+    String getEmployeeName();
+    String getCustomerName();
     String getStartDate();
     String getEndDate();
     double getDeposit();

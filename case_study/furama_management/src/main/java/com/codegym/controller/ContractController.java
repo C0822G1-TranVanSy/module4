@@ -42,7 +42,9 @@ public class ContractController {
 
     @GetMapping("")
     public String showList(Pageable pageable, Model model){
-        Page<Contract> contractPage = contractService.findAll(pageable);
+//        Page<Contract> contractPage = contractService.findAll(pageable);
+        Page<IContractDto> contractPage = contractService.findAllContract(pageable);
+
         List<Customer> customerList = customerService.findAll();
         List<Employee> employeeList = employeeService.findAll();
         List<Facility> facilityList = facilityService.findAll();
