@@ -1,19 +1,22 @@
 package com.codegym.dto.facility;
 
 
-import com.codegym.model.facility.Facility;
 import com.codegym.model.facility.FacilityType;
 import com.codegym.model.facility.RentType;
-import net.bytebuddy.implementation.bind.annotation.Empty;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 public class FacilityDto implements Validator {
     private int id;
+    @Pattern(regexp = "[\\w ]+", message = "Không đúng định dạng")
     private String name;
     private int area;
+    @NotNull(message = "Không được null")
     private Double cost;
     private int maxPeople;
     private RentType rentType;
@@ -21,7 +24,6 @@ public class FacilityDto implements Validator {
     private String standardRoom;
     private String descriptionOtherConvenience;
     private Double poolArea;
-    @Pattern(regexp = "[\\d]+")
     private Integer numberOfFloors;
     private String facilityFree;
 
@@ -129,11 +131,23 @@ public class FacilityDto implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         FacilityDto facilityDto = (FacilityDto) target;
-        String reg = "[A-Z][\\w ]+";
-        if(facilityDto.name.equals("")){
-            errors.rejectValue("name","name","Không được để trống");
-        }else if(!facilityDto.name.matches(reg)){
-            errors.rejectValue("name","name","Không đúng định dạng");
+        String[] strings = facilityDto.name.split(" ");
+        if (!facilityDto.name.equals("")) {
+            for (String s : strings) {
+                if (s.charAt(0) < 'A' || s.charAt(0) > 'Z') {
+                    errors.rejectValue("name", "name", "Chữ cái đầu tiên phải viết hoa");
+                    break;
+                }
+            }
+        }
+        if(facilityDto.getFacilityType().getId()==3){
+            facilityDto.setNumberOfFloors(null);
+        }
+        if (facilityDto.numberOfFloors!=null && !facilityDto.numberOfFloors.toString().matches("[\\d]+")) {
+            errors.rejectValue("numberOfFloors", "numberOfFloors", "Bắt buộc phải nhập số");
+        }
+        if(facilityDto.cost!=null && !facilityDto.cost.toString().matches("([\\d]+)|([\\d]*.[\\d]+)")){
+            errors.rejectValue("cost","cost","Giá phải số dương");
         }
     }
 }

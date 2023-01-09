@@ -15,6 +15,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -51,26 +52,47 @@ public class CustomerController {
     }
 
     @PostMapping("/update")
-    public String update( Customer customer, RedirectAttributes redirectAttributes){
-        customerService.update(customer);
-        redirectAttributes.addFlashAttribute("mess","Chỉnh sửa thành công");
+    public String update(@Validated CustomerDto customerDto, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes){
+        new CustomerDto().validate(customerDto,bindingResult);
+        Customer customer = new Customer();
+        BeanUtils.copyProperties(customerDto,customer);
+        Map<String,String> errorMap = customerService.getError(customerDto);
+        if(errorMap.get("errorIdCard")!= null) {
+            bindingResult.rejectValue("idCard", "idCard", errorMap.get("errorIdCard"));
+        }
+        if(errorMap.get("errorPhoneNumber")!= null) {
+            bindingResult.rejectValue("phoneNumber", "phoneNumber", errorMap.get("errorPhoneNumber"));
+        }
+        if(errorMap.get("errorEmail")!= null) {
+            bindingResult.rejectValue("email","email",errorMap.get("errorEmail"));}
+        if(bindingResult.hasErrors()){
+            model.addAttribute("customerTypeList", customerTypeService.findAll());
+            return "customer/create";
+        }
+
+        if(errorMap.isEmpty()){
+            customerService.update(customer);
+            redirectAttributes.addFlashAttribute("mess","Chỉnh sửa thành công");
+        }
         return "redirect:/customer";
     }
 
     @GetMapping("/update/{id}")
     public String showUpdate(@PathVariable int id, Model model){
         Customer customer = customerService.findById(id).orElseThrow(()-> new IllegalArgumentException("not found"));
-        model.addAttribute("customer",customer);
+        CustomerDto customerDto = new CustomerDto();
+        BeanUtils.copyProperties(customer,customerDto);
+        model.addAttribute("customer",customerDto);
         model.addAttribute("customerTypeList", customerTypeService.findAll());
         return "customer/update";
     }
 
     @PostMapping("/create")
-    public String add(CustomerDto customerDto, BindingResult bindingResult,Model model, RedirectAttributes redirectAttributes) {
+    public String add(@Validated CustomerDto customerDto, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
         new CustomerDto().validate(customerDto,bindingResult);
         Customer customer = new Customer();
         BeanUtils.copyProperties(customerDto,customer);
-        Map<String,String> errorMap = customerService.getError(customer);
+        Map<String,String> errorMap = customerService.getError(customerDto);
         if(errorMap.get("errorIdCard")!= null) {
             bindingResult.rejectValue("idCard", "idCard", errorMap.get("errorIdCard"));
         }
@@ -83,16 +105,9 @@ public class CustomerController {
             model.addAttribute("customerTypeList", customerTypeService.findAll());
             return "customer/create";
         }
-//        String mess = "";
-        if(errorMap.isEmpty()){
-//            try {
-                customerService.add(customer);
-//            } catch (Exception ex) {
-//                if (ex.get() == "E_CONFLICT_ID") {
-//                    mess="bị trùng sdt";
-//                }
-//            }
 
+        if(errorMap.isEmpty()){
+                customerService.add(customer);
             redirectAttributes.addFlashAttribute("mess","Thêm mới thành công");
         }
         return "redirect:/customer";

@@ -1,8 +1,10 @@
 package com.codegym.service.customer.impl;
 
+import com.codegym.dto.customer.CustomerDto;
 import com.codegym.model.customer.Customer;
 import com.codegym.repository.customer.ICustomerRepository;
 import com.codegym.service.customer.ICustomerService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -39,31 +41,39 @@ public class CustomerService implements ICustomerService {
     }
 
     @Override
-    public Map<String,String> getError(Customer customer) {
+    public Map<String,String> getError(CustomerDto customerDto) {
         Map<String,String> errorMap = new HashMap<>();
+
         for (Customer c: findAll()) {
-            if(c.getIdCard().equals(customer.getIdCard())){
+            if(customerDto.getId()!=c.getId()){
+            if(c.getIdCard().equals(customerDto.getIdCard())){
                 errorMap.put("errorIdCard","Trùng id card");
 //                throw new Exception("E_CONFLICT_ID");
             }
-            if(c.getPhoneNumber().equals(customer.getPhoneNumber())){
+            if(c.getPhoneNumber().equals(customerDto.getPhoneNumber())){
                 errorMap.put("errorPhoneNumber","Trùng số phone");
             }
-            if(c.getEmail().equals(customer.getEmail())){
+            if(c.getEmail().equals(customerDto.getEmail())){
                 errorMap.put("errorEmail","Trùng email");
             }
+        }
         }
         return errorMap;
     }
 
     @Override
     public void add(Customer customer) {
-        getError(customer);
+        CustomerDto customerDto = new CustomerDto();
+        BeanUtils.copyProperties(customer,customerDto);
+        getError(customerDto);
         customerRepository.save(customer);
     }
 
     @Override
     public void update(Customer customer) {
+        CustomerDto customerDto = new CustomerDto();
+        BeanUtils.copyProperties(customer,customerDto);
+        getError(customerDto);
         customerRepository.save(customer);
     }
 

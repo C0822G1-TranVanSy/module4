@@ -40,6 +40,7 @@
         <label th:for="cost" class="col-sm-2 col-form-label">Cost: </label>
         <div class="col-sm-10">
             <input type="text" class="form-control" th:field="*{cost}">
+            <p th:errors="*{cost}" style="position: absolute" class="text-danger small"></p>
         </div>
     </div>
     <div class="m-4 row">

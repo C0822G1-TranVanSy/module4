@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class AttachFacilityService implements IAttachFacilityService {
     @Autowired
-    IAttachFacilityRepository attachFacilityRepository;
+    private IAttachFacilityRepository attachFacilityRepository;
 
     @Override
     public List<AttachFacility> findAll() {

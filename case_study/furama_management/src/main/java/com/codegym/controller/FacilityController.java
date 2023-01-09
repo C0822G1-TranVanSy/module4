@@ -13,6 +13,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -69,9 +70,7 @@ public class FacilityController {
     }
 
     @PostMapping("/create")
-    public String add(FacilityDto facilityDto, BindingResult bindingResult,Model model, RedirectAttributes redirectAttributes) {
-        Facility facility = new Facility();
-        BeanUtils.copyProperties(facilityDto, facility);
+    public String add(@Validated FacilityDto facilityDto, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
         new FacilityDto().validate(facilityDto, bindingResult);
         if (bindingResult.hasErrors()) {
             model.addAttribute("facilityTypeList", facilityTypeService.findAll());
@@ -79,6 +78,8 @@ public class FacilityController {
             return "facility/create";
         }
         try {
+            Facility facility = new Facility();
+            BeanUtils.copyProperties(facilityDto, facility);
             facilityService.add(facility);
             redirectAttributes.addFlashAttribute("mess", "Thêm mới thành công");
         } catch (Exception e) {
@@ -87,6 +88,7 @@ public class FacilityController {
             model.addAttribute("rentTypeList", rentTypeService.findAll());
             return "facility/create";
         }
+
         return "redirect:/facility";
     }
 

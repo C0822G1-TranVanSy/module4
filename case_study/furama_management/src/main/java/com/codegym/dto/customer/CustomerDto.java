@@ -1,24 +1,21 @@
 package com.codegym.dto.customer;
 
-
 import com.codegym.model.customer.CustomerType;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import javax.validation.constraints.Pattern;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class CustomerDto implements Validator {
 
     private int id;
     private CustomerType customerType;
-    @Pattern(regexp = "[a-zA-z ]+", message = "ko được nhập số")
     private String name;
     private String dateOfBirth;
     private boolean gender;
-    @Pattern(regexp = "[\\d]{9}",message = "Id Card 9 số")
     private String idCard;
-    @Pattern(regexp = "[\\d]{10}",message = "10 số")
     private String phoneNumber;
-    @Pattern(regexp = "[\\w]+[@][\\w]+.[\\w]+",message = "nhập đúng đinh dạng email")
     private String email;
     private String address;
 
@@ -102,9 +99,33 @@ public class CustomerDto implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         CustomerDto customerDto = (CustomerDto) target;
-        String reg = "^([\\d]{2}/[\\d]{2}/[\\d]{4})$";
-        if(customerDto.dateOfBirth.equals("") || !reg.matches(customerDto.dateOfBirth)){
-            errors.rejectValue("dateOfBirth",getDateOfBirth(),"Không đúng định dạng dd/mm/yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try {
+            LocalDate dateOfBirth1 = LocalDate.parse(customerDto.dateOfBirth, formatter);
+        } catch (DateTimeParseException e) {
+            errors.rejectValue("dateOfBirth", "dateOfBirth", "Ngày sinh phải đúng định dạng dd/MM/yyyy");
+        }
+
+        String[] strings = customerDto.getName().split(" ");
+        if(!customerDto.name.matches("[a-zA-Z ]+")|| customerDto.name.equals("")){
+            errors.rejectValue("name","name","Không đúng định dạng tên");
+        }
+        if(!customerDto.name.equals("")){
+        for (String string : strings) {
+            if (string.charAt(0) < 'A' || string.charAt(0) > 'Z') {
+                errors.rejectValue("name", "name", "Chữ cái đầu phải viết hoa");
+                break;
+            }
+        }}
+
+        if(!customerDto.idCard.matches("[\\d]{9,12}") || customerDto.idCard.equals("")){
+            errors.rejectValue("idCard","idCard","Không đúng định dạng (9 hoặc 12 số)");
+        }
+        if(!customerDto.phoneNumber.matches("(090|091|\\(84\\)\\+90|\\(84\\)\\+91)\\d{7}") || customerDto.phoneNumber.equals("")){
+            errors.rejectValue("phoneNumber","phoneNumber","Định dạng 090xxxxxxx hoặc 091xxxxxxx hoặc (84)+90xxxxxxx hoặc (84)+91xxxxxxx");
+        }
+        if(!customerDto.email.matches("[\\w]{5,}@[\\w]+.[\\w]+")){
+            errors.rejectValue("email","email","Định dạng (abcde@xyz.ikm)");
         }
     }
 }

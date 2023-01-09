@@ -1,5 +1,6 @@
 package com.codegym.service.customer;
 
+import com.codegym.dto.customer.CustomerDto;
 import com.codegym.model.customer.Customer;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,7 +19,7 @@ public interface ICustomerService {
 
     List<Customer> findAll();
 
-    Map<String,String> getError(Customer customer);
+    Map<String,String> getError(CustomerDto customerDto);
 
     void add(Customer customer);
 

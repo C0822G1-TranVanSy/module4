@@ -10,7 +10,6 @@ import com.codegym.model.contract.ContractDetail;
 import com.codegym.service.contract.IAttachFacilityService;
 import com.codegym.service.contract.IContractDetailService;
 import com.codegym.service.contract.IContractService;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,12 +32,6 @@ public class ContractRestController {
         List<IContractDto> contractDtoList = contractService.findAllContract();
         return new ResponseEntity<>(contractDtoList,HttpStatus.OK);
     }
-
-//    @GetMapping("/view/{id}")
-//    public ResponseEntity<List<AttachFacility>> searchAttachFacilityByContractId(@PathVariable("id") int id){
-//        List<AttachFacility> attachFacilityList = attachFacilityService.findByContractId(id);
-//        return new ResponseEntity<>(attachFacilityList,HttpStatus.OK);
-//    }
 
     @GetMapping("/view/{id}")
     public ResponseEntity<List<IAttachFacilityDto>> searchAttachFacilityByContractId(@PathVariable("id") int id){

@@ -24,19 +24,21 @@
                 <h5 class="modal-title" id="addLabel">Thêm hợp đồng</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="/contract/create" method="post" th:object="${contract}">
+            <form action="/contract/create" method="post" th:object="${contractDto}">
                 <div class="modal-body">
 
                     <div class="mb-3 row">
                         <label th:for="startDate" class="col-sm-3 col-form-label ">Ngày bắt đầu</label>
                         <div class="col-sm-9">
                             <input type="date" class="form-control" th:field="*{startDate}">
+                            <p th:errors="*{startDate}" style="position: absolute" class="text-danger"></p>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label th:for="endDate" class="col-sm-3 col-form-label">Ngày kết thúc</label>
                         <div class="col-sm-9">
                             <input type="date" class="form-control" th:field="*{endDate}">
+                            <p th:errors="*{endDate}" style="position: absolute" class="text-danger"></p>
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -279,7 +281,7 @@
         </div>
     </div>
 </div>
-<!--<input type="hidden" id="modalCheck" th:value="${modal}">-->
+<input type="hidden" id="modalCheck" th:value="${isModal}">
 
 <div th:insert="~{/include/footer::foot}" class="mt-2"></div>
 
@@ -320,7 +322,7 @@
                             <td>
                                 <button type="button"
                                     onclick="updateContract('${data[i].id}','${data[i].startDate}','${data[i].endDate}','${data[i].deposit}','${data[i].customerId}','${data[i].employeeId}','${data[i].facilityId}','${data[i].total}')"
-                                    id = "a" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#update">
+                                    class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#update">
                                 +
                             </button>
 
@@ -371,9 +373,6 @@
             success: function () {
                 console.log("success");
                 showListContract();
-                setTimeout(() => {
-                    $('#a').click();
-                }, 100);
             },
         });
         searchId(contractId)
@@ -420,15 +419,15 @@
 </script>
 
 <script>
-    // let modal = document.getElementById("modalCheck").value;
-    //
-    // if (modal == "true") {
-    //     $(document).ready(
-    //         function () {
-    //             $('#attach_facility').appendTo('body').modal('show')
-    //         }
-    //     )
-    // }
+    let modal = document.getElementById("modalCheck").value;
+
+    if (modal == "true") {
+        $(document).ready(
+            function () {
+                $('#add').appendTo('body').modal('show')
+            }
+        )
+    }
 
     function updateContract(id, startDate, endDate, deposit, customer, employee, facility,total) {
         document.getElementById("idContractEdit").value = id;
