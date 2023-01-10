@@ -24,7 +24,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/contract")
@@ -48,7 +50,6 @@ public class ContractController {
         List<Facility> facilityList = facilityService.findAll();
         List<AttachFacility> attachFacilityList = attachFacilityService.findAll();
         model.addAttribute("contractDto", new ContractDto());
-        model.addAttribute("contract", new Contract());
         model.addAttribute("contractPage", contractPage);
         model.addAttribute("customerList", customerList);
         model.addAttribute("employeeList", employeeList);
@@ -59,25 +60,49 @@ public class ContractController {
     }
 
     @PostMapping("/create")
-    public String add(@Validated ContractDto contractDto, BindingResult bindingResult,Model model, RedirectAttributes redirectAttributes) {
+    public String add(@Validated ContractDto contractDto, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes, Pageable pageable) {
         new ContractDto().validate(contractDto, bindingResult);
         if (bindingResult.hasErrors()) {
-            redirectAttributes.addFlashAttribute("isModal", true);
+            model.addAttribute("customerList", customerService.findAll());
+            model.addAttribute("employeeList", employeeService.findAll());
+            model.addAttribute("facilityList", facilityService.findAll());
+            model.addAttribute("contract", new Contract());
+            model.addAttribute("contractDetail", new ContractDetail());
+            model.addAttribute("isModal", true);
+            return "contract/list";
+        } else {
+            Contract contract = new Contract();
+            BeanUtils.copyProperties(contractDto, contract);
+            contractService.add(contract);
+            redirectAttributes.addFlashAttribute("mess", "Thêm mới thành công");
             return "redirect:/contract";
         }
-        Contract contract = new Contract();
-        BeanUtils.copyProperties(contractDto, contract);
-        contractService.add(contract);
-        redirectAttributes.addFlashAttribute("mess", "Thêm mới thành công");
-        return "redirect:/contract";
     }
 
     @PostMapping("/update")
-    public String update(Contract contract, RedirectAttributes redirectAttributes) {
-        contractService.update(contract);
-        redirectAttributes.addFlashAttribute("mess", "Chỉnh sửa thành công");
-        return "redirect:/contract";
+    public String update(@Validated ContractDto contractDto, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+        new ContractDto().validate(contractDto, bindingResult);
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("customerList", customerService.findAll());
+            model.addAttribute("employeeList", employeeService.findAll());
+            model.addAttribute("facilityList", facilityService.findAll());
+            model.addAttribute("contractDetail", new ContractDetail());
+            model.addAttribute("isModal2", true);
+            return "contract/list";
+        } else {
+            Contract contract = new Contract();
+            BeanUtils.copyProperties(contractDto, contract);
+            contractService.update(contract);
+            redirectAttributes.addFlashAttribute("mess", "Chỉnh sửa thành công");
+            return "redirect:/contract";
+        }
     }
+//    @PostMapping("/update")
+//    public String update(Contract contract, RedirectAttributes redirectAttributes) {
+//        contractService.update(contract);
+//        redirectAttributes.addFlashAttribute("mess", "Chỉnh sửa thành công");
+//        return "redirect:/contract";
+//    }
 
     @GetMapping("/view/{id}")
     public String showListAttachFacility(@PathVariable int id, RedirectAttributes redirectAttributes) {
@@ -86,8 +111,4 @@ public class ContractController {
         return "redirect:/contract";
     }
 
-    @GetMapping("/addAttachFacility")
-    public String addAttachFacility() {
-        return "redirect:/contract";
-    }
 }

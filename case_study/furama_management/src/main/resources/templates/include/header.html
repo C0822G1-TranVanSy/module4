@@ -1,8 +1,23 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <div th:fragment="head">
 <div class="m-2">
-    <div class="d-flex justify-content-between text-center">
+    <div class="d-flex justify-content-between">
         <span><img src="/images/logo.png" height="100" width="63" alt="logo lỗi"/></span>
-        <span class="d-flex align-items-center">Trần Văn Sỹ</span>
+        <div>
+        <div class="content">
+            <div class="justify-content-flex">
+                <a sec:authorize="isAnonymous()" href="/login" class="btn btn-outline-success">Sign-in</a>
+<!--                <a sec:authorize="isAnonymous()" href="/sign-up" class="btn btn-outline-primary">Sign-up</a>-->
+            </div>
+        </div>
+        <p sec:authorize="!isAnonymous()" class="text-danger m-2" th:text="${#authentication.getPrincipal().username}"></p>
+        <div class="content">
+            <div class="justify-content-flex ">
+                <a sec:authorize="!isAnonymous()" href="/logout" class="btn btn-outline-success">Log-out</a>
+            </div>
+        </div>
+        </div>
     </div>
 </div>
 

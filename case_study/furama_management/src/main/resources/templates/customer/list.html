@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -60,7 +62,7 @@
 <!--                </button>-->
             </td>
             <td>
-                <button th:attr="onclick=|infoDelete('${customer.getId()}','${customer.getName()}')|" type="button"
+                <button sec:authorize="hasRole('ADMIN')" th:attr="onclick=|infoDelete('${customer.getId()}','${customer.getName()}')|" type="button"
                         class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Delete
                 </button>

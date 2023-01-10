@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,44 +9,57 @@
 </head>
 <body>
 <script src="/bootstrap-5.1.3-dist/js/bootstrap.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
+        crossorigin="anonymous"></script>
+
 
 <div th:insert="~{/include/header::head}"></div>
 
 <h2 class="d-flex justify-content-center text-danger">Contract List</h2>
 
 <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-        data-bs-target="#add">
+        data-bs-target="#addModal">
     Thêm mới hợp đồng
 </button>
 <!-------------------------------------------- Thêm mới ----------------->
-<div class="modal fade" id="add" tabindex="-1" aria-labelledby="addLabel" aria-hidden="true">
+<div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="addLabel">Thêm hợp đồng</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="/contract/create" method="post" th:object="${contractDto}">
+            <form th:action="@{/contract/create}" method="post" th:object="${contractDto}">
                 <div class="modal-body">
 
                     <div class="mb-3 row">
                         <label th:for="startDate" class="col-sm-3 col-form-label ">Ngày bắt đầu</label>
                         <div class="col-sm-9">
                             <input type="date" class="form-control" th:field="*{startDate}">
-                            <p th:errors="*{startDate}" style="position: absolute" class="text-danger"></p>
+                            <p th:errors="*{startDate}" th:if="${#fields.hasErrors('startDate')}" class="text-danger"></p>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label th:for="endDate" class="col-sm-3 col-form-label">Ngày kết thúc</label>
                         <div class="col-sm-9">
                             <input type="date" class="form-control" th:field="*{endDate}">
-                            <p th:errors="*{endDate}" style="position: absolute" class="text-danger"></p>
+                            <p th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}" class="text-danger"></p>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label th:for="deposit" class="col-sm-3 col-form-label">Tiền đặt cọc</label>
                         <div class="col-sm-9">
-                            <input type="password" class="form-control" th:field="*{deposit}">
+                            <input type="text" class="form-control" th:field="*{deposit}">
+                            <p th:errors="*{deposit}" th:if="${#fields.hasErrors('deposit')}" class="text-danger"></p>
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -102,57 +117,39 @@
     </tr>
     </thead>
     <tbody id="my-body-contract">
-<!--    <tr th:each="contract,status: ${contractPage.content}">-->
-<!--        <td th:text="${status.count + contractPage.number*contractPage.size}">-->
-<!--        <td th:text="${contract.getFacilityName()}"></td>-->
-<!--        <td th:text="${contract.getCustomerName()}"></td>-->
-<!--        <td th:text="${contract.getStartDate()}"></td>-->
-<!--        <td th:text="${contract.getEndDate()}"></td>-->
-<!--        <td th:text="${contract.getDeposit()}"></td>-->
-<!--        <td th:text="${contract.getTotal()}"> </td>-->
-<!--        <td>-->
-<!--            <button type="button"-->
-<!--                    th:attr="onclick=|updateContract('${contract.getId()}','${contract.getStartDate()}','${contract.getEndDate()}','${contract.getDeposit()}','${contract.getCustomerId()}','${contract.getEmployeeId()}','${contract.getFacilityId()}')|"-->
-<!--                    class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#update">-->
-<!--                +-->
-<!--            </button>-->
-<!--            <button type="button" th:attr="onclick=|searchId('${contract.getId()}')|"-->
-<!--                    class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#attach_facility">-->
-<!--                Danh sách dịch vụ đi kèm-->
-<!--            </button>-->
-<!--        </td>-->
-<!--    </tr>-->
-
     </tbody>
 </table>
 
 <!------------------------------------------- Modal update ------------------------------------------>
-<div class="modal fade" id="update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Thay Đổi Hợp đồng </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-
+                <form action="/contract/update" method="post" th:object="${contractDto}">
                 <div class="modal-body">
-                    <input type="text" hidden id="idContractEdit">
+                    <input type="text" hidden id="idContractEdit" th:field="*{id}">
                     <div class="mb-3 row">
                         <label th:for="startDate" class="col-sm-3 col-form-label ">Ngày bắt đầu</label>
                         <div class="col-sm-9">
-                            <input type="date" class="form-control" id="startDateEdit">
+                            <input type="date" class="form-control" id="startDateEdit" th:field="*{startDate}">
+                            <p th:errors="*{startDate}" th:if="${#fields.hasErrors('startDate')}" class="text-danger"></p>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label th:for="endDate" class="col-sm-3 col-form-label">Ngày kết thúc</label>
                         <div class="col-sm-9">
-                            <input type="date" class="form-control" id="endDateEdit" >
+                            <input type="date" class="form-control" id="endDateEdit" th:field="*{endDate}">
+                            <p th:errors="*{endDate}" th:if="${#fields.hasErrors('endDate')}" class="text-danger"></p>
                         </div>
                     </div>
                     <div class="mb-3 row">
                         <label th:for="deposit" class="col-sm-3 col-form-label">Tiền đặt cọc</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="depositEdit">
+                            <input type="text" class="form-control" id="depositEdit" th:field="*{deposit}">
+                            <p th:errors="*{deposit}" th:if="${#fields.hasErrors('deposit')}" class="text-danger"></p>
                         </div>
                     </div>
                     <div class="mb-3 row">
@@ -164,7 +161,7 @@
                     <div class="mb-3 row">
                         <label class="col-sm-3 col-form-label">Khách hàng thuê dịch vụ</label>
                         <div class="col-sm-9">
-                            <select class="form-control" id="customerEdit">
+                            <select class="form-control" th:field="*{customer}" id="customerEdit">
                                 <option value="">Chọn Khách hàng</option>
                                 <option th:each="item: ${customerList}" th:value="${item.id}"
                                         th:text="${item.name}"></option>
@@ -174,7 +171,7 @@
                     <div class="mb-3 row">
                         <label class="col-sm-3 col-form-label">Nhân viên</label>
                         <div class="col-sm-9">
-                            <select class="form-control" id="employeeEdit" >
+                            <select class="form-control" th:field="*{employee}" id="employeeEdit" >
                                 <option value="">Chọn Nhân Viên</option>
                                 <option th:each="item: ${employeeList}" th:value="${item.id}"
                                         th:text="${item.name}"></option>
@@ -184,7 +181,7 @@
                     <div class="mb-3 row">
                         <label class="col-sm-3 col-form-label">Dịch vụ</label>
                         <div class="col-sm-9">
-                            <select class="form-control" id="facilityEdit">
+                            <select class="form-control" th:field="*{facility}" id="facilityEdit">
                                 <option value="">Chọn dịch vụ</option>
                                 <option th:each="item: ${facilityList}" th:value="${item.id}"
                                         th:text="${item.name}"></option>
@@ -205,7 +202,7 @@
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy bỏ</button>
                     <button type="submit" class="btn btn-warning">Thay đổi hợp đồng</button>
                 </div>
-
+                </form>
         </div>
     </div>
 </div>
@@ -282,20 +279,9 @@
     </div>
 </div>
 <input type="hidden" id="modalCheck" th:value="${isModal}">
+<input type="hidden" id="modalCheck2" th:value="${isModal2}">
 
 <div th:insert="~{/include/footer::foot}" class="mt-2"></div>
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM="
-        crossorigin="anonymous"></script>
 
 <script>
     showListContract()
@@ -322,7 +308,7 @@
                             <td>
                                 <button type="button"
                                     onclick="updateContract('${data[i].id}','${data[i].startDate}','${data[i].endDate}','${data[i].deposit}','${data[i].customerId}','${data[i].employeeId}','${data[i].facilityId}','${data[i].total}')"
-                                    class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#update">
+                                    class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#updateModal">
                                 +
                             </button>
 
@@ -419,14 +405,17 @@
 </script>
 
 <script>
-    let modal = document.getElementById("modalCheck").value;
+    if ($("#modalCheck").val() == "true") {
+        $(document).ready(function () {
+            $('#addModal').modal('show');
 
-    if (modal == "true") {
-        $(document).ready(
-            function () {
-                $('#add').appendTo('body').modal('show')
-            }
-        )
+        });
+    }
+    if ($("#modalCheck2").val() == "true") {
+        $(document).ready(function () {
+            $('#updateModal').modal('show');
+
+        });
     }
 
     function updateContract(id, startDate, endDate, deposit, customer, employee, facility,total) {
