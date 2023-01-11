@@ -36,11 +36,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .loginPage("/login")
                 .defaultSuccessUrl("/home", true).permitAll()
                 .and().authorizeRequests().antMatchers("/contract").hasRole("ADMIN")
+                .and().authorizeRequests().antMatchers("/facility").hasRole("ADMIN")
                 .and().authorizeRequests().antMatchers("/customer").hasAnyRole("USER","ADMIN")
                 .and().authorizeRequests().antMatchers("/home").permitAll()
                 .and()
                 .authorizeRequests()
                 .anyRequest().authenticated();
+
         http.authorizeRequests().and().rememberMe().tokenRepository(persistentTokenRepository())
                 .tokenValiditySeconds(1*24*60*60);
     }
